@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: TostaMista
   Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   Object: {fileID: 216796305400157542, guid: dff096896904f4e45ac7e0a2d9c29a7c, type: 3}
+  taskDificulty: 3
