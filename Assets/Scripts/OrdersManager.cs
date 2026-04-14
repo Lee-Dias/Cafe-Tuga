@@ -1,0 +1,95 @@
+using UnityEngine;
+using System.Collections.Generic;
+
+public class OrdersManager : MonoBehaviour
+{
+    [SerializeField] private ObjectsToPlace[] objectsToPlaces;
+
+    [Header("Configurações de Dificuldade (Budget)")]
+    [SerializeField] private float minTotalDifficulty = 1;
+    [SerializeField] private float maxTotalDifficulty = 2;
+    [SerializeField] private float multiplyOfOrdersPerLevel = 1.5f;
+
+    [Header("Limites de Itens por Nível de Objeto")]
+    [SerializeField] private int quantidadeInicialDeLimite = 1;
+    [SerializeField] private int multiplicadorPorNivel = 3;
+    private int[] maxItemsPerDifficultyLevel = { 99, 0, 0 };
+
+    [Header("Progressão de Pedidos")]
+    [SerializeField] private int amountOfOrdersOnLevel = 3;
+    private int currentLevel = 1;
+    private int ordersCompletedOnLevel;
+    private List<ObjectsToPlace> finalOrder;
+    private void Start()
+    {
+        MakeOrder();
+    }
+    public void MakeOrder()
+    {
+        float currentOrderBudget = 0;
+        finalOrder = new List<ObjectsToPlace>();
+
+        // Dicionário para contar quantos itens de cada dificuldade já colocamos neste pedido
+        Dictionary<int, int> countPerDifficulty = new Dictionary<int, int>();
+
+        int safetyBreak = 0;
+        while (currentOrderBudget < minTotalDifficulty && safetyBreak < 100)
+        {
+            safetyBreak++;
+
+            // 1. Pega um objeto aleatório
+            ObjectsToPlace randomObj = objectsToPlaces[Random.Range(0, objectsToPlaces.Length)];
+            int objLevel = randomObj.taskDificulty; // Assumindo que 1, 2 ou 3
+
+            // 2. VERIFICAÇÃO DE REGRAS:
+
+            // Regra A: O nível do objeto está desbloqueado? (Baseado no tamanho do array)
+            if (objLevel > maxItemsPerDifficultyLevel.Length) continue;
+
+            // Regra B: Já atingimos o limite de quantidade para esse nível de objeto?
+            countPerDifficulty.TryAdd(objLevel, 0);
+            if (countPerDifficulty[objLevel] >= maxItemsPerDifficultyLevel[objLevel - 1]) continue;
+
+            // Regra C: Cabe no orçamento total (Budget)?
+            if (currentOrderBudget + objLevel <= maxTotalDifficulty)
+            {
+                finalOrder.Add(randomObj);
+                currentOrderBudget += objLevel;
+                countPerDifficulty[objLevel]++;
+            }
+
+            // Se atingiu o mínimo, tem chance de encerrar
+            if (currentOrderBudget >= minTotalDifficulty && Random.value > 0.5f) break;
+        }
+
+        Debug.Log($"Pedido Nível {currentLevel} Gerado com {finalOrder.Count} itens.");
+    }
+
+    void UpdateLevel()
+    {
+        currentLevel++;
+        ordersCompletedOnLevel = 0; // Resetamos para o novo nível
+
+        // Aumenta o orçamento total
+        minTotalDifficulty *= multiplyOfOrdersPerLevel;
+        maxTotalDifficulty *= multiplyOfOrdersPerLevel;
+        amountOfOrdersOnLevel = Mathf.RoundToInt(amountOfOrdersOnLevel * multiplyOfOrdersPerLevel);
+        // --- LÓGICA DE DESBLOQUEIO ---
+        // Exemplo: No nível 2, libera itens de nível 2
+        if (currentLevel == 2) maxItemsPerDifficultyLevel[1] = 2;
+
+        // No nível 3, libera itens de nível 3 (limite de 2) e aumenta os de nível 2
+        if (currentLevel == 3)
+        {
+            maxItemsPerDifficultyLevel[1] *= multiplicadorPorNivel;
+            maxItemsPerDifficultyLevel[2] = 2;
+        }
+
+        // No nível 4 em diante, você pode remover os limites (colocar 99)
+        if (currentLevel >= 4)
+        {
+            maxItemsPerDifficultyLevel[1] *= multiplicadorPorNivel;
+            maxItemsPerDifficultyLevel[2] *= multiplicadorPorNivel;
+        }
+    }
+}

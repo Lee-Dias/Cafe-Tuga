@@ -6,6 +6,8 @@ public class SpaceSelector : MonoBehaviour
     private Renderer objRenderer;
     private MapBuildManager mapBuildManager;
     private ObjectsToPlace whatFurniture = null;
+    private Feedback feedback;
+    private GameManager gameManager;
 
 
     [Header("References")]
@@ -24,21 +26,26 @@ public class SpaceSelector : MonoBehaviour
     void Start()
     {
         mapBuildManager = FindFirstObjectByType<MapBuildManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
+        feedback = FindFirstObjectByType<Feedback>();
         objRenderer = GetComponent<Renderer>();
         originalColor = objRenderer.material.color;
     }
     void OnMouseEnter()
     {
+        if (feedback.GetState() || !gameManager.OnCustomization) return;
         objRenderer.material.color = highlightColor;
     }
 
     void OnMouseExit()
     {
+        if (feedback.GetState() || !gameManager.OnCustomization) return;
         objRenderer.material.color = originalColor;
     }
 
     void OnMouseDown()
     {
+        if (feedback.GetState() || !gameManager.OnCustomization) return;
         ExecutarAcao();
     }
 
