@@ -8,7 +8,7 @@ public class SpaceSelector : MonoBehaviour
     private ObjectsToPlace whatFurniture = null;
     private Feedback feedback;
     private GameManager gameManager;
-
+    
 
     [Header("References")]
     [SerializeField] private bool isBlankSpace = false;
@@ -16,12 +16,16 @@ public class SpaceSelector : MonoBehaviour
     [Header("Configurações de Cor")]
     [SerializeField]private Color highlightColor = Color.green; // Cor ao passar o rato
 
+    public ObjectsToPlace WhatFurniture => whatFurniture;
+
 
 
     public void ChangeWhatFurniture(ObjectsToPlace otp)
     {
         whatFurniture = otp;
     }
+
+
 
     void Start()
     {
@@ -55,7 +59,7 @@ public class SpaceSelector : MonoBehaviour
         if (mapBuildManager.SelectedGameObject != null && isBlankSpace)
         {
             // Criamos o objeto na posição (transform.position) e rotação (transform.rotation) deste cubo
-            GameObject newPlaced = Instantiate(mapBuildManager.SelectedGameObject.Object, transform.position, transform.rotation);
+            GameObject newPlaced = Instantiate(mapBuildManager.SelectedGameObject.Object, transform.position, transform.rotation, mapBuildManager.FurnitureParent.transform);
 
             newPlaced.GetComponent<SpaceSelector>().ChangeWhatFurniture(mapBuildManager.SelectedGameObject);
 
@@ -69,7 +73,7 @@ public class SpaceSelector : MonoBehaviour
             if (!isBlankSpace) 
             { 
                 // Criamos o objeto na posição (transform.position) e rotação (transform.rotation) deste cubo
-                Instantiate(mapBuildManager.BlankSpaceObject, transform.position, transform.rotation);
+                Instantiate(mapBuildManager.BlankSpaceObject, transform.position, transform.rotation, mapBuildManager.FurnitureParent.transform);
                 mapBuildManager.AddToList(whatFurniture);
                 // Destruímos o cubo vazio
                 Destroy(this.gameObject);            

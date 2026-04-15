@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class OrdersManager : MonoBehaviour
 {
     [SerializeField] private ObjectsToPlace[] objectsToPlaces;
+    [SerializeField] private GameObject fatherOfFurniture;
 
     [Header("Configurações de Dificuldade (Budget)")]
     [SerializeField] private float minTotalDifficulty = 1;
@@ -20,9 +22,12 @@ public class OrdersManager : MonoBehaviour
     private int currentLevel = 1;
     private int ordersCompletedOnLevel;
     private List<ObjectsToPlace> finalOrder;
+    private OrdersUIManager ordersUIManager;
+
+    public List<ObjectsToPlace> FinalOrder => finalOrder;
     private void Start()
     {
-        MakeOrder();
+        ordersUIManager = FindFirstObjectByType<OrdersUIManager>();
     }
     public void MakeOrder()
     {
@@ -62,7 +67,48 @@ public class OrdersManager : MonoBehaviour
             if (currentOrderBudget >= minTotalDifficulty && Random.value > 0.5f) break;
         }
 
-        Debug.Log($"Pedido Nível {currentLevel} Gerado com {finalOrder.Count} itens.");
+        foreach (Transform obj in fatherOfFurniture.transform) {
+            if (obj.GetComponent<SpaceSelector>().WhatFurniture == finalOrder[0]){ 
+                obj.GetComponent<OrderPerItem>().ChangeToBeMadeState(true);
+                break;
+            }
+        }
+        ordersUIManager.UpdateOrder();
+    }
+    public void TakeFromOrder()
+    {
+        foreach (Transform obj in fatherOfFurniture.transform)
+        {
+            if (obj.GetComponent<SpaceSelector>().WhatFurniture == finalOrder[0])
+            {
+                obj.GetComponent<OrderPerItem>().ChangeToBeMadeState(false);
+                break;
+            }
+        }
+        finalOrder.RemoveAt(0);
+        if (finalOrder.Count == 0)
+        {
+            ordersCompletedOnLevel += 1;
+            if (ordersCompletedOnLevel >= amountOfOrdersOnLevel)
+            {
+                UpdateLevel();
+                MakeOrder();
+                return;
+            }
+            MakeOrder();
+            return;
+        }
+        foreach (Transform obj in fatherOfFurniture.transform)
+        {
+
+            if (obj.GetComponent<SpaceSelector>().WhatFurniture == finalOrder[0])
+            {
+                obj.GetComponent<OrderPerItem>().ChangeToBeMadeState(true);
+                break;
+            }
+        }
+
+        ordersUIManager.UpdateOrder();
     }
 
     void UpdateLevel()

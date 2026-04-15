@@ -5,10 +5,12 @@ public class MapBuildManager : MonoBehaviour
 {
     [SerializeField] private GameObject blankSpaceObject;
     [SerializeField] private List<ObjectsToPlace> furnitureToPlace;
+    [SerializeField] private GameObject furnitureParent;
 
     private ObjectsToPlace selectedGameObject;
 
     private FurnitureUiManager furnitureUiManager;
+    public GameObject FurnitureParent => furnitureParent;
     public List<ObjectsToPlace> FurnitureToPlace => furnitureToPlace;
     public GameObject BlankSpaceObject => blankSpaceObject;
     public ObjectsToPlace SelectedGameObject => selectedGameObject;
