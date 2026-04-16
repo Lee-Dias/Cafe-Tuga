@@ -1,4 +1,4 @@
-using System.Collections;
+
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -17,18 +17,6 @@ public class AudioManager : MonoBehaviour
         ass.GetComponent<AudioSource>().Play();
 
         // Inicia a rotina para destruir o objeto após a duração do som
-        StartCoroutine(DestroyAfterFinished(ass, audioClip.length));
-    }
-
-    private IEnumerator DestroyAfterFinished(GameObject source, float duration)
-    {
-        // Espera o tempo exato da duração do áudio
-        yield return new WaitForSeconds(duration);
-
-        // Destrói o GameObject que foi instanciado
-        if (source != null)
-        {
-            Destroy(source.gameObject);
-        }
+        Destroy(ass.gameObject, audioClip.length);
     }
 }

@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Montra
   Icon: {fileID: 21300000, guid: 48ba6b48b81034f4aa049d65584b3c6b, type: 3}
   Object: {fileID: 222962037550074823, guid: 0fde76e6fcf920b41b07405b400fcc78, type: 3}
-  taskDificulty: 2
+  taskDificulty: 1

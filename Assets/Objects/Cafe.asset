@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Cafe
   Icon: {fileID: 21300000, guid: 853ac3ec157c6a6498c32f0512adf938, type: 3}
   Object: {fileID: 1237920202060357017, guid: 5389cb116564a7d418c160b7ef16eba2, type: 3}
-  taskDificulty: 1
+  taskDificulty: 2

@@ -15,10 +15,11 @@ public class Interactable : MonoBehaviour
 
     private void Start()
     {
-        if(this.GetComponent<Renderer>() == null) return;
+        audioManager = FindFirstObjectByType<AudioManager>();
+        if (this.GetComponent<Renderer>() == null) return;
         defaultColor = this.GetComponent<Renderer>().material.color;
 
-        audioManager = FindFirstObjectByType<AudioManager>();
+        
     }
     public void ResetCompleted()
     {
@@ -36,7 +37,13 @@ public class Interactable : MonoBehaviour
             audioManager.PlaySound(audioClip);
             canBeInteracted = false;
             this.GetComponentInParent<OrderPerItem>().SetObjectsToInteractable();
-        
+            if(this.GetComponent<Renderer>() == null)
+            {
+                foreach (Transform transform in this.transform)
+                {
+                    if (transform.GetComponent<Renderer>() != null) transform.GetComponent<Renderer>().material.color = defaultColor;
+                }
+            }
             this.GetComponent<Renderer>().material.color = defaultColor;
         }
 
