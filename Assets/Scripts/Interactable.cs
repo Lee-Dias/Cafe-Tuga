@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-
+    [SerializeField]private bool shouldDestroyOncomplete = false; 
     private bool canBeInteracted = false;
 
 
@@ -21,7 +21,11 @@ public class Interactable : MonoBehaviour
     {
         canBeInteracted = false;
         this.GetComponentInParent<OrderPerItem>().SetObjectsToInteractable();
+        
         this.GetComponent<Renderer>().material.color = defaultColor;
+        if (shouldDestroyOncomplete){
+            Destroy(this.gameObject);
+        }
         
     }
     public void SetCanBeInteractedToTrue()
@@ -32,5 +36,20 @@ public class Interactable : MonoBehaviour
     public void ChangeMaterialColor(Color color)
     {
         this.GetComponent<Renderer>().material.color = color;
+    }
+    void OnMouseEnter()
+    {
+        if (!canBeInteracted) return;
+        ChangeMaterialColor(Color.red);
+    }
+    void OnMouseExit()
+    {
+        if (!canBeInteracted) return;
+        ChangeMaterialColor(Color.yellow);
+    }
+    void OnMouseDown()
+    {
+        if (!canBeInteracted) return;
+        SetAsCompleted();
     }
 }

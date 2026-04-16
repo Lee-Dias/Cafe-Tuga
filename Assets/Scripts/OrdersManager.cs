@@ -23,11 +23,13 @@ public class OrdersManager : MonoBehaviour
     private int ordersCompletedOnLevel;
     private List<ObjectsToPlace> finalOrder;
     private OrdersUIManager ordersUIManager;
+    private CustomersManager customersManager;
 
     public List<ObjectsToPlace> FinalOrder => finalOrder;
     private void Start()
     {
         ordersUIManager = FindFirstObjectByType<OrdersUIManager>();
+        customersManager = FindFirstObjectByType<CustomersManager>();
     }
     public void MakeOrder()
     {
@@ -92,10 +94,15 @@ public class OrdersManager : MonoBehaviour
             if (ordersCompletedOnLevel >= amountOfOrdersOnLevel)
             {
                 UpdateLevel();
-                MakeOrder();
+                finalOrder = new List<ObjectsToPlace>();
+                ordersUIManager.UpdateOrder();
+                customersManager.SpawnCustomer();
                 return;
             }
-            MakeOrder();
+            finalOrder = new List<ObjectsToPlace>();
+            ordersUIManager.UpdateOrder();
+            customersManager.SpawnCustomer();
+
             return;
         }
         foreach (Transform obj in fatherOfFurniture.transform)
