@@ -19,6 +19,9 @@ public class OrderPerItem : MonoBehaviour
     private List<GameObject> originalList = new List<GameObject>();
 
     [SerializeField] private bool balcao = false;
+    [SerializeField] private AudioClip clip;
+
+    private AudioManager audioManager;
 
     private GameObject lastSpawnedObject;
     private GameObject balcaoObj;
@@ -30,6 +33,7 @@ public class OrderPerItem : MonoBehaviour
     {
         ordersManager = FindFirstObjectByType<OrdersManager>();
         originalList = new List<GameObject>(itemsToCompleteOrder);
+        audioManager = FindFirstObjectByType<AudioManager>();
     }
 
     public void ChangeToBeMadeState(bool b)
@@ -78,6 +82,7 @@ public class OrderPerItem : MonoBehaviour
 
         if (item != null) // Segurança caso o item seja destruído enquanto espera
         {
+            audioManager.PlaySound(clip);
             item.GetComponent<Interactable>().SetCanBeInteractedToTrue();
         }
     }

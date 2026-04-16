@@ -1471,8 +1471,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goToCounter: {fileID: 2170398061011832092}
   leaveTheStore: {fileID: 1878800772381581529}
-  go: {fileID: 3235337597481477938, guid: 5f5de88e6063be6488fd49115d965462, type: 3}
-  leave: {fileID: 3555330404625211474, guid: fdb4c20562681d34c9ba12c84928917e, type: 3}
+  go: {fileID: 3287711779793433611, guid: 5c5cef707b9f29d439fa8f97dc249b3a, type: 3}
+  leave: {fileID: 2225058424015187041, guid: 19bff9b655765ed4487cb38a7b7de228, type: 3}
+  audio: {fileID: 8300000, guid: 49d4804b35da8404eaab588be3b27d07, type: 3}
 --- !u!1 &8973364897719857629
 GameObject:
   m_ObjectHideFlags: 0

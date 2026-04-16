@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d845e37b7c75948b80b5d01d306f96, type: 3}
   m_Name: TostaMista
   m_EditorClassIdentifier: 
-  Name: TostaMista
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  Object: {fileID: 216796305400157542, guid: dff096896904f4e45ac7e0a2d9c29a7c, type: 3}
+  Name: Sandes
+  Icon: {fileID: 21300000, guid: e32a4427adaf58d47a43a698614b120c, type: 3}
+  Object: {fileID: 1237920202060357017, guid: cfacdbf7e839fa74db5540a727a62c1a, type: 3}
   taskDificulty: 3

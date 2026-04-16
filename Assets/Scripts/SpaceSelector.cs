@@ -5,11 +5,12 @@ public class SpaceSelector : MonoBehaviour
     private Color originalColor;
     private Renderer objRenderer;
     private MapBuildManager mapBuildManager;
-    private ObjectsToPlace whatFurniture = null;
+    [SerializeField]private ObjectsToPlace whatFurniture = null;
     private Feedback feedback;
     private GameManager gameManager;
-    
 
+
+    [SerializeField] private bool cantInteract = false;
     [Header("References")]
     [SerializeField] private bool isBlankSpace = false;
 
@@ -33,23 +34,26 @@ public class SpaceSelector : MonoBehaviour
         gameManager = FindFirstObjectByType<GameManager>();
         feedback = FindFirstObjectByType<Feedback>();
         objRenderer = GetComponent<Renderer>();
-        originalColor = objRenderer.material.color;
+        if (objRenderer != null) {
+            originalColor = objRenderer.material.color;
+        }
+
     }
     void OnMouseEnter()
     {
-        if (feedback.GetState() || !gameManager.OnCustomization) return;
+        if (feedback.GetState() || !gameManager.OnCustomization || cantInteract) return;
         objRenderer.material.color = highlightColor;
     }
 
     void OnMouseExit()
     {
-        if (feedback.GetState() || !gameManager.OnCustomization) return;
+        if (feedback.GetState() || !gameManager.OnCustomization || cantInteract) return;
         objRenderer.material.color = originalColor;
     }
 
     void OnMouseDown()
     {
-        if (feedback.GetState() || !gameManager.OnCustomization) return;
+        if (feedback.GetState() || !gameManager.OnCustomization || cantInteract) return;
         ExecutarAcao();
     }
 

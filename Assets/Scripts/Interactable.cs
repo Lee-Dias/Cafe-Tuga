@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField]private bool shouldDestroyOncomplete = false; 
+    [SerializeField]private bool shouldDestroyOncomplete = false;
+    [SerializeField] private AudioClip audioClip;
+
+    private AudioManager audioManager;
     private bool canBeInteracted = false;
 
 
@@ -12,30 +15,51 @@ public class Interactable : MonoBehaviour
 
     private void Start()
     {
+        if(this.GetComponent<Renderer>() == null) return;
         defaultColor = this.GetComponent<Renderer>().material.color;
+
+        audioManager = FindFirstObjectByType<AudioManager>();
     }
     public void ResetCompleted()
     {
     }
     public void SetAsCompleted()
     {
-        canBeInteracted = false;
-        this.GetComponentInParent<OrderPerItem>().SetObjectsToInteractable();
-        
-        this.GetComponent<Renderer>().material.color = defaultColor;
-        if (shouldDestroyOncomplete){
+        if (shouldDestroyOncomplete)
+        {
+            this.GetComponentInParent<OrderPerItem>().SetObjectsToInteractable();
+            audioManager.PlaySound(audioClip);
             Destroy(this.gameObject);
         }
+        else
+        {
+            audioManager.PlaySound(audioClip);
+            canBeInteracted = false;
+            this.GetComponentInParent<OrderPerItem>().SetObjectsToInteractable();
+        
+            this.GetComponent<Renderer>().material.color = defaultColor;
+        }
+
+
         
     }
     public void SetCanBeInteractedToTrue()
     {
         canBeInteracted=true;
-        ChangeMaterialColor(Color.yellow);
+        ChangeMaterialColor(Color.cyan);
     }
     public void ChangeMaterialColor(Color color)
     {
-        this.GetComponent<Renderer>().material.color = color;
+        if (this.GetComponent<Renderer>() != null)
+        {
+            this.GetComponent<Renderer>().material.color = color;
+        }
+        else {
+            foreach (Transform transform in this.transform) {
+                if(transform.GetComponent<Renderer>() != null) transform.GetComponent<Renderer>().material.color = color;
+            }
+        }
+            
     }
     void OnMouseEnter()
     {
@@ -45,7 +69,7 @@ public class Interactable : MonoBehaviour
     void OnMouseExit()
     {
         if (!canBeInteracted) return;
-        ChangeMaterialColor(Color.yellow);
+        ChangeMaterialColor(Color.cyan);
     }
     void OnMouseDown()
     {
