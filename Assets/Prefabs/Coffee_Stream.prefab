@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3670407721959038377
+--- !u!1 &4636394246670012804
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3501727303659681797}
-  - component: {fileID: 5695572284320724429}
-  - component: {fileID: 1909932643755464987}
-  - component: {fileID: 6701726823019365945}
-  - component: {fileID: 6510607875065128527}
+  - component: {fileID: 127194060416594352}
+  - component: {fileID: 739277455667094096}
+  - component: {fileID: 5310407650695796008}
+  - component: {fileID: 6144277533196607542}
   m_Layer: 0
-  m_Name: Furniture Holder
+  m_Name: Coffee_Stream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3501727303659681797
+--- !u!4 &127194060416594352
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3670407721959038377}
+  m_GameObject: {fileID: 4636394246670012804}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 2, z: 7.5}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.2888155, y: 1.5726967, z: 0.7393448}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5695572284320724429
+--- !u!33 &739277455667094096
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3670407721959038377}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1909932643755464987
+  m_GameObject: {fileID: 4636394246670012804}
+  m_Mesh: {fileID: 6762908212594281894, guid: 1bec387f3c2e5cf419a2735f79ad44a0, type: 3}
+--- !u!23 &5310407650695796008
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3670407721959038377}
+  m_GameObject: {fileID: 4636394246670012804}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9409359eb46ba3b4b82770d6ff0e925b, type: 2}
+  - {fileID: 2100000, guid: 352dd5bed42a1b74b9030bfe97a973bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,40 +87,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6701726823019365945
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3670407721959038377}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6510607875065128527
+--- !u!114 &6144277533196607542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3670407721959038377}
+  m_GameObject: {fileID: 4636394246670012804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80901fb0a505de341a4b4e6497c992d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 2672cca7745686a4baeab7491a848596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatFurniture: {fileID: 0}
-  cantInteract: 0
-  isBlankSpace: 1
-  highlightColor: {r: 0.12755239, g: 1, b: 0, a: 1}
+  timeToSelfDestruct: 3

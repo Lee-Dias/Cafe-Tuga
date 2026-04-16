@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 6427356536836192835}
   - component: {fileID: 7733422309769038401}
   - component: {fileID: 5392844203450164672}
+  - component: {fileID: 98863801317727299}
   m_Layer: 0
   m_Name: Fat_Character
   m_TagString: Untagged
@@ -579,6 +580,23 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!114 &98863801317727299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3166397878240554439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532d524671776fa4789d5ff12059a002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goToCounter: {fileID: 7733422309769038401}
+  leaveTheStore: {fileID: 5392844203450164672}
+  go: {fileID: 3287711779793433611, guid: 5c5cef707b9f29d439fa8f97dc249b3a, type: 3}
+  leave: {fileID: 2225058424015187041, guid: 19bff9b655765ed4487cb38a7b7de228, type: 3}
+  audio: {fileID: 8300000, guid: 2e686c39b25ad3c4e8af268f85a843f3, type: 3}
 --- !u!1 &3545770689813810339
 GameObject:
   m_ObjectHideFlags: 0

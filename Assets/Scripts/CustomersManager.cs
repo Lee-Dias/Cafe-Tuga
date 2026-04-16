@@ -11,7 +11,7 @@ public class CustomersManager : MonoBehaviour
         if (currentCustomer != null) {
             currentCustomer.GetComponent<CustomersController>().LeaveTheStore();
         }
-        int a = Random.Range(0, Customers.Length-1);
+        int a = Random.Range(0, Customers.Length);
 
         currentCustomer = Instantiate(Customers[a]);
     }
