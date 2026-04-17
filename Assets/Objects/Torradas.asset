@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Torradas
   m_EditorClassIdentifier: 
   Name: Torrada
-  Icon: {fileID: 21300000, guid: e32a4427adaf58d47a43a698614b120c, type: 3}
+  Icon: {fileID: 21300000, guid: 44d16b56ad3f6f241b2bb48eb1bb48f7, type: 3}
   Object: {fileID: 1237920202060357017, guid: df402c3071a5062468e6fe1d3e30c28f, type: 3}
-  taskDificulty: 1
+  taskDificulty: 2
