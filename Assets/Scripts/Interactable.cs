@@ -16,8 +16,15 @@ public class Interactable : MonoBehaviour
     private void Start()
     {
         audioManager = FindFirstObjectByType<AudioManager>();
-        if (this.GetComponent<Renderer>() == null) return;
-        defaultColor = this.GetComponent<Renderer>().material.color;
+        if (this.GetComponent<Renderer>() != null)
+        {
+            defaultColor = this.GetComponent<Renderer>().material.color;
+        }
+        else
+        {
+            defaultColor = GetComponentInChildren<Renderer>().material.color;
+        }
+
 
         
     }
@@ -44,7 +51,11 @@ public class Interactable : MonoBehaviour
                     if (transform.GetComponent<Renderer>() != null) transform.GetComponent<Renderer>().material.color = defaultColor;
                 }
             }
-            this.GetComponent<Renderer>().material.color = defaultColor;
+            else
+            {
+                this.GetComponent<Renderer>().material.color = defaultColor;
+            }
+            
         }
 
 

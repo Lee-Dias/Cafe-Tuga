@@ -34,8 +34,16 @@ public class SpaceSelector : MonoBehaviour
         gameManager = FindFirstObjectByType<GameManager>();
         feedback = FindFirstObjectByType<Feedback>();
         objRenderer = GetComponent<Renderer>();
-        if (objRenderer != null) {
+        if (objRenderer != null)
+        {
             originalColor = objRenderer.material.color;
+        }
+        else
+        {
+            foreach (Transform t in transform)
+            {
+                originalColor = t.GetComponent<Renderer>().material.color;
+            }
         }
 
     }
