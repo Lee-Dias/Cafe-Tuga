@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12d845e37b7c75948b80b5d01d306f96, type: 3}
-  m_Name: Montra
+  m_Name: Torradas
   m_EditorClassIdentifier: 
-  Name: Montra
-  Icon: {fileID: 21300000, guid: 48ba6b48b81034f4aa049d65584b3c6b, type: 3}
-  Object: {fileID: 222962037550074823, guid: 0fde76e6fcf920b41b07405b400fcc78, type: 3}
-  taskDificulty: 2
+  Name: Torrada
+  Icon: {fileID: 21300000, guid: e32a4427adaf58d47a43a698614b120c, type: 3}
+  Object: {fileID: 1237920202060357017, guid: df402c3071a5062468e6fe1d3e30c28f, type: 3}
+  taskDificulty: 1

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TostaMista
   m_EditorClassIdentifier: 
   Name: Sandes
-  Icon: {fileID: 21300000, guid: e32a4427adaf58d47a43a698614b120c, type: 3}
+  Icon: {fileID: 21300000, guid: 05527344048fce64e8d35d1ca8343470, type: 3}
   Object: {fileID: 1237920202060357017, guid: cfacdbf7e839fa74db5540a727a62c1a, type: 3}
   taskDificulty: 3
